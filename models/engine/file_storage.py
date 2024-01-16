@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This is the file storage class for AirBnB"""
+"""file storage class for AirBnB"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -12,19 +12,18 @@ import shlex
 
 
 class FileStorage:
-    """This class serializes instances to a JSON file and
-    deserializes JSON file to instances
+    """serialize to json file
     Attributes:
-        __file_path: path to the JSON file
-        __objects: objects will be stored
+        __file_path: path
+        __objects: object
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self, cls=None):
-        """returns a dictionary
+        """returns dic
         Return:
-            returns a dictionary of __object
+            returns dic
         """
         dic = {}
         if cls:
@@ -39,16 +38,16 @@ class FileStorage:
             return self.__objects
 
     def new(self, obj):
-        """sets __object to given obj
+        """new obj
         Args:
-            obj: given object
+            obj: object
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             self.__objects[key] = obj
 
     def save(self):
-        """serialize the file path to JSON file path
+        """serialize path file
         """
         my_dict = {}
         for key, value in self.__objects.items():
@@ -57,7 +56,7 @@ class FileStorage:
             json.dump(my_dict, f)
 
     def reload(self):
-        """serialize the file path to JSON file path
+        """file path serialization
         """
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
@@ -68,13 +67,13 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """ delete an existing element
+        """ delete an element
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
 
     def close(self):
-        """ calls reload()
+        """ reload
         """
         self.reload()

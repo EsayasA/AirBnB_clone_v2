@@ -28,9 +28,9 @@ class test_Amenity(test_basemodel):
 
 
 class Test_PEP8(unittest.TestCase):
-    """test User"""
+    """test for user"""
     def test_pep8_user(self):
-        """test pep8 style"""
+        """test for pep8"""
         pep8style = pycodestyle.StyleGuide(quiet=True)
         result = pep8style.check_files(['models/amenity.py'])
         self.assertEqual(result.total_errors, 0,
@@ -38,9 +38,9 @@ class Test_PEP8(unittest.TestCase):
 
 
 class test_inherit_basemodel(unittest.TestCase):
-    """Test if user inherit from BaseModel"""
+    """Test for inheritance"""
     def test_instance(self):
-        """check if user is an instance of BaseModel"""
+        """check for instance"""
         user = Amenity()
         self.assertIsInstance(user, Amenity)
         self.assertTrue(issubclass(type(user), BaseModel))
@@ -48,7 +48,7 @@ class test_inherit_basemodel(unittest.TestCase):
 
 
 class test_Amenity_BaseModel(unittest.TestCase):
-    """Testing user class"""
+    """Test for user class"""
     def test_instances(self):
         with patch('models.amenity'):
             instance = Amenity()
@@ -79,7 +79,7 @@ class test_Amenity_BaseModel(unittest.TestCase):
             self.assertEqual(instance.name, "Barbie")
 
     def test_user_id_and_createat(self):
-        """testing id for every user"""
+        """test for id"""
         user_1 = Amenity()
         sleep(2)
         user_2 = Amenity()
@@ -102,7 +102,7 @@ class test_Amenity_BaseModel(unittest.TestCase):
 
     def test_str_method(self):
         """
-        Testin str magic method
+        Test for str method
         """
         inst = Amenity()
         str_output = "[Amenity] ({}) {}".format(inst.id, inst.__dict__)
@@ -110,7 +110,7 @@ class test_Amenity_BaseModel(unittest.TestCase):
 
     @patch('models.storage')
     def test_save_method(self, mock_storage):
-        """Testing save method and if it update"""
+        """Test for save method"""
         instance5 = Amenity()
         created_at = instance5.created_at
         sleep(2)
@@ -125,10 +125,10 @@ class test_Amenity_BaseModel(unittest.TestCase):
 
 
 class TestAmenity(unittest.TestCase):
-    """Test the Amenity class"""
+    """Test for amenity class"""
 
     def test_is_subclass(self):
-        """Test that Amenity is a subclass of BaseModel"""
+        """Test for subclass amenity"""
         amenity = Amenity()
         self.assertIsInstance(amenity, BaseModel)
         self.assertTrue(hasattr(amenity, "id"))
@@ -136,7 +136,7 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue(hasattr(amenity, "updated_at"))
 
     def test_name_attr(self):
-        """Test that Amenity has attribute name, and it's as an empty string"""
+        """Test for Amenity"""
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
         if storage_t == 'db':
@@ -145,7 +145,7 @@ class TestAmenity(unittest.TestCase):
             self.assertEqual(amenity.name, "")
 
     def test_to_dict_creates_dict(self):
-        """test to_dict method creates a dictionary with proper attrs"""
+        """test for dic"""
         am = Amenity()
         print(am.__dict__)
         new_d = am.to_dict()
@@ -157,7 +157,7 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue("__class__" in new_d)
 
     def test_to_dict_values(self):
-        """test that values in dict returned from to_dict are correct"""
+        """test for values"""
         t_format = "%Y-%m-%dT%H:%M:%S.%f"
         am = Amenity()
         new_d = am.to_dict()
@@ -168,7 +168,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(new_d["updated_at"], am.updated_at.strftime(t_format))
 
     def test_str(self):
-        """test that the str method has the correct output"""
+        """test for str method"""
         amenity = Amenity()
         string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
         self.assertEqual(string, str(amenity))
