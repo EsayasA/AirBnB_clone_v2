@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """amenity class"""
-from models.place import place_amenity
-from sqlalchemy import Column, String
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String
+from models.place import place_amenity
 
 class Amenity(BaseModel, Base):
     """amenity class
