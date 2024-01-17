@@ -59,7 +59,7 @@ class Place(BaseModel, Base):
             """ Returns lists"""
             var = models.storage.all()
             lista = []
-            res = []
+            result = []
             for key in var:
                 review = key.replace('.', ' ')
                 review = shlex.split(review)
@@ -67,8 +67,8 @@ class Place(BaseModel, Base):
                     lista.append(var[key])
             for elem in lista:
                 if (elem.place_id == self.id):
-                    res.append(elem)
-            return (res)
+                    result.append(elem)
+            return (result)
 
         @property
         def amenities(self):

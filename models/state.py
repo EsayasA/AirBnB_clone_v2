@@ -22,7 +22,7 @@ class State(BaseModel, Base):
     def cities(self):
         var = models.storage.all()
         lista = []
-        res = []
+        result = []
         for key in var:
             city = key.replace('.', ' ')
             city = shlex.split(city)
@@ -30,5 +30,5 @@ class State(BaseModel, Base):
                 lista.append(var[key])
         for elem in lista:
             if (elem.state_id == self.id):
-                res.append(elem)
-        return (res)
+                result.append(elem)
+        return (result)
