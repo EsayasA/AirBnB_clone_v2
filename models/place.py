@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """class f place"""
+from os import getenv
+import models
 from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Table, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
-from os import getenv
-import models
-
 
 place_amenity = Table("place_amenity", Base.metadata,
                       Column("place_id", String(60),
@@ -60,7 +59,7 @@ class Place(BaseModel, Base):
             """ Returns lists"""
             var = models.storage.all()
             lista = []
-            result = []
+            res = []
             for key in var:
                 review = key.replace('.', ' ')
                 review = shlex.split(review)
@@ -68,8 +67,8 @@ class Place(BaseModel, Base):
                     lista.append(var[key])
             for elem in lista:
                 if (elem.place_id == self.id):
-                    result.append(elem)
-            return (result)
+                    res.append(elem)
+            return (res)
 
         @property
         def amenities(self):
